@@ -27,7 +27,7 @@ public class Restaurante {
     private Set<Horario> horarios;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
-    private Set<ComentariosRest> comentariosRest;
+    private Set<ComentarioRest> comentariosRest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
     private Set<Pedido> pedidos;

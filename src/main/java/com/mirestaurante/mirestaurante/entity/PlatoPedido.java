@@ -1,16 +1,12 @@
 package com.mirestaurante.mirestaurante.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "plato_pedido")
-@Getter
-@Setter
 public class PlatoPedido {
 
     @Id
@@ -23,14 +19,15 @@ public class PlatoPedido {
     @JsonBackReference
     private Pedido pedido;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "plato_id", referencedColumnName = "id")
     private PlatoRestaurante platoRestaurante;
 
     @Column(name = "cantidad")
     private int cantidad;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platoPedido")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platoPedido") // El mappedBy referencia al extra pedido , la variable platoPedido
+    @JoinColumn(name = "plato_id")
     private Set<ExtraPedido> extrasPedido;
 
 
