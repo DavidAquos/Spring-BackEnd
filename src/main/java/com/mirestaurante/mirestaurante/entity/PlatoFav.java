@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "alergeno")
+@Table(name = "plato_fav")
 @Getter
 @Setter
 public class PlatoFav {
@@ -16,11 +16,4 @@ public class PlatoFav {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    private Cliente cliente;
-
-    @OneToOne
-    @JoinColumn(name = "plato_id", referencedColumnName = "id")
-    private Plato plato;
 }
