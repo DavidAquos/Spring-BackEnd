@@ -1,13 +1,13 @@
 package com.mirestaurante.mirestaurante.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -24,27 +24,20 @@ public class Pedido {
     @Column(name = "estado")
     private String estado;
 
-    private Cliente cliente;
-
-    @Column(name = "direccion")
-    private Direccion direccion;
-
-    @Column(name = "estado")
-    private Restaurante restaurante;
+    @Column(name = "localizador")
+    private String localizador;
 
     @Column(name = "coste_transporte")
-    private BigDecimal coste_transporte;
+    private BigDecimal costeTransporte;
+
+    @Column(name = "precio_total")
+    private BigDecimal precioTotal;
 
     @Column(name = "fecha")
     private Date fecha;
 
-    private String cupon_descuento;
-
-    @Column(name = "localizador")
-    private String localizador;
-
-    @Column(name = "precioTotal")
-    private BigDecimal precioTotal;
+    @Column(name = "cupon_descuento")
+    private String cuponDescuento;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id", nullable = false)
@@ -62,5 +55,4 @@ public class Pedido {
     @JoinColumn(name = "direccion_id", referencedColumnName = "id")
     @JsonManagedReference
     private Direccion direccion;
-
 }

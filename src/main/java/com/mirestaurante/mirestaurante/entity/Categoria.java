@@ -1,5 +1,6 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "alergeno")
+@Table(name = "categoria")
 @Getter
 @Setter
 public class Categoria {
@@ -21,5 +22,6 @@ public class Categoria {
     private String categoria;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoria")
-    private Set<Restaurante> restaurantes; // el Set siempre (y solamente) va con el OneToMany, es una lista
+    @JsonManagedReference
+    private Set<Restaurante> restaurantes;
 }

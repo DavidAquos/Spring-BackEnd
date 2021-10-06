@@ -1,5 +1,7 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,7 +12,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "restaurante")
+@Table(name="restaurante")
 @Getter
 @Setter
 public class Restaurante {
@@ -21,18 +23,23 @@ public class Restaurante {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference
     private Set<ImgRestaurante> imgsRestaurante;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference
     private Set<Horario> horarios;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference
     private Set<ComentarioRest> comentariosRest;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference
     private Set<Pedido> pedidos;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
+    @JsonManagedReference
     private Set<PlatoRestaurante> platosRestaurante;
 
     @OneToOne
@@ -57,8 +64,10 @@ public class Restaurante {
     @Column(name = "destacado")
     private boolean destacado;
 
+
     @Column(name = "activo")
     private boolean activo;
+
 
     @Column(name = "date_created")
     @CreationTimestamp
@@ -69,7 +78,8 @@ public class Restaurante {
     private Date dateUpdated;
 
     @ManyToOne
-    @JoinColumn(name = "id_restaurante")
+    @JoinColumn(name = "categoria_id")
+    @JsonBackReference
     private Categoria categoria;
 
 }

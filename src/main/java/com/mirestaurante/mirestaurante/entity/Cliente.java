@@ -1,5 +1,6 @@
 package com.mirestaurante.mirestaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,12 +34,15 @@ public class Cliente {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonManagedReference
     private Set<Pedido> pedidos;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonManagedReference
     private Set<PlatoFav> platosFav;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonManagedReference
     private Set<RestauranteFav> restaurantesFav;
 
     @OneToOne
@@ -46,6 +50,10 @@ public class Cliente {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @JsonManagedReference
     private Set<Direccion> direcciones;
+
+
+
 
 }

@@ -1,12 +1,14 @@
 package com.mirestaurante.mirestaurante.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "alergeno")
+@Table(name ="alergeno")
 @Getter
 @Setter
 public class Alergeno {
@@ -16,10 +18,12 @@ public class Alergeno {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "plato_id", nullable = false)
-    private PlatoRestaurante platoRestaurante;
-
     @Column(name = "alergeno")
     private String alergeno;
+
+    @ManyToOne
+    @JoinColumn(name = "plato_id", nullable = false)
+    @JsonBackReference
+    private PlatoRestaurante platoRestaurante;
+
 }

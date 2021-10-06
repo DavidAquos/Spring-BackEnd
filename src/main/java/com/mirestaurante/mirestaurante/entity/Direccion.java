@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Direccion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,14 +36,18 @@ public class Direccion {
     private String pais;
 
     @Column(name = "cp")
-    private String cp;
+    private int cp;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonBackReference
     private Cliente cliente;
 
     @OneToOne
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private Pedido pedido;
+
+
+
 }
